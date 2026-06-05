@@ -42,6 +42,7 @@ jobs:
             --channel listed \
             --source-dir extension \
             --ignore-files README.md \
+            --approval-timeout 0 \
             --api-key "$AMO_JWT_ISSUER" \
             --api-secret "$AMO_JWT_SECRET"
         env:
