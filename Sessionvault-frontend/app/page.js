@@ -108,7 +108,13 @@ export default function Page() {
             <a href="#install">Install</a>
             <a href="#capture">Usage</a>
             <a href="#apikey">API key</a>
-            <a href="#example">Example</a>
+            <a
+              href="https://github.com/akshatgg/Sessionvault"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
             <a className="btn primary" href="#install">
               Get the extension
             </a>
@@ -134,11 +140,24 @@ export default function Page() {
           <strong>No server, no database, nothing stored.</strong>
         </p>
         <div className="cta">
-          <a className="btn primary" href="#install">
-            Get started
+          <a
+            className="btn primary"
+            href="https://addons.mozilla.org/en-US/firefox/addon/sessionvault/"
+            target="_blank"
+            rel="noopener"
+          >
+            🦊 Add to Firefox
           </a>
-          <a className="btn" href="#how-it-works">
-            How it works
+          <a
+            className="btn"
+            href="https://github.com/akshatgg/Sessionvault"
+            target="_blank"
+            rel="noopener"
+          >
+            ⬇ Download for Chrome
+          </a>
+          <a className="btn" href="#install">
+            How to install
           </a>
         </div>
       </section>
@@ -278,43 +297,82 @@ export default function Page() {
 
           <section id="install">
             <h2>Install the extension</h2>
-            <p>There are two ways to use SessionVault:</p>
-            <ul>
-              <li>
-                <strong>From the add-on store</strong> — once it&apos;s published,
-                install in one click and get automatic updates.
-              </li>
-              <li>
-                <strong>Download &amp; run it locally</strong> — grab the{" "}
-                <code>extension</code> folder and load it <em>unpacked</em> (steps
-                below). No store account needed — you can use it right now.
-              </li>
-            </ul>
-            <h3>Chrome / Edge / Brave</h3>
+
+            <h3>🦊 Firefox — one click from the store</h3>
+            <p>
+              SessionVault is published on Firefox Add-ons. Install it and it
+              auto-updates:
+            </p>
+            <p>
+              <a
+                className="btn primary"
+                href="https://addons.mozilla.org/en-US/firefox/addon/sessionvault/"
+                target="_blank"
+                rel="noopener"
+              >
+                Add to Firefox →
+              </a>
+            </p>
+            <p className="lead-sm">
+              <a
+                href="https://addons.mozilla.org/en-US/firefox/addon/sessionvault/"
+                target="_blank"
+                rel="noopener"
+              >
+                addons.mozilla.org/firefox/addon/sessionvault
+              </a>{" "}
+              — if the page doesn&apos;t open yet, the listing is still in Mozilla
+              review; check back shortly.
+            </p>
+
+            <h3>🌐 Chrome / Edge / Brave — manual (developer mode)</h3>
+            <p>
+              SessionVault isn&apos;t on the Chrome Web Store, so you load it from
+              source. It takes a minute and works on any Chromium browser:
+            </p>
             <ol className="steps">
               <li>
+                <strong>Download the code</strong> Open{" "}
+                <a
+                  href="https://github.com/akshatgg/Sessionvault"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  github.com/akshatgg/Sessionvault
+                </a>{" "}
+                → green <em>Code</em> button → <em>Download ZIP</em>, then unzip it
+                (or <code>git clone</code> the repo).
+              </li>
+              <li>
                 <strong>Open the extensions page</strong> Go to{" "}
-                <code>chrome://extensions</code>.
+                <code>chrome://extensions</code> (or <code>edge://extensions</code> /{" "}
+                <code>brave://extensions</code>).
               </li>
               <li>
                 <strong>Enable Developer mode</strong> Toggle it on (top-right).
               </li>
               <li>
-                <strong>Load unpacked</strong> Click it and select the extension
-                folder. The logo appears in your toolbar.
+                <strong>Load unpacked</strong> Click it and select the{" "}
+                <code>extension/</code> folder inside what you downloaded. The logo
+                appears in your toolbar.
               </li>
             </ol>
-            <h3>Firefox</h3>
-            <ol className="steps">
-              <li>
-                <strong>Open the debugging page</strong> Go to{" "}
-                <code>about:debugging#/runtime/this-firefox</code>.
-              </li>
-              <li>
-                <strong>Load Temporary Add-on</strong> Pick the{" "}
-                <code>manifest.json</code> file.
-              </li>
-            </ol>
+            <div className="note tip">
+              <span className="tag">Updating on Chrome</span>
+              <div>
+                Because it&apos;s loaded unpacked, Chrome won&apos;t auto-update it.
+                To update: download the latest from GitHub and click the ↻ refresh
+                icon on the extension&apos;s card in <code>chrome://extensions</code>.
+              </div>
+            </div>
+
+            <h3>🦊 Firefox — load unpacked (for development)</h3>
+            <p>
+              Prefer not to use the store? Go to{" "}
+              <code>about:debugging#/runtime/this-firefox</code> →{" "}
+              <strong>Load Temporary Add-on</strong> → pick{" "}
+              <code>extension/manifest.json</code> from the downloaded code.
+            </p>
             <div className="note">
               <span className="tag">Firefox note</span>
               <div>
@@ -388,6 +446,18 @@ export default function Page() {
 
           <section id="send">
             <h2>Send to your API</h2>
+            <div className="note tip">
+              <span className="tag">You provide two things</span>
+              <div>
+                SessionVault has <strong>no API of its own</strong>. To use the POST
+                option, <strong>you create (1) an endpoint</strong> — a URL on your
+                own server that accepts a POST — and <strong>(2) an API key</strong>{" "}
+                — a secret your endpoint checks. When you click <em>POST to API</em>,
+                the captured <code>storageState</code> is sent <strong>directly to
+                your endpoint</strong> with your key. It never passes through any
+                SessionVault server.
+              </div>
+            </div>
             <p>
               The extension doesn&apos;t decide where data goes — <strong>you do</strong>.
               In the popup, open <em>API settings</em> and fill in three fields:
@@ -683,7 +753,14 @@ export default function Page() {
             <img src="/logo.svg" alt="" /> SessionVault
           </span>
           <span className="spacer"></span>
-          <span>Capture sessions. Store them safely. Reuse anywhere.</span>
+          <a
+            href="https://github.com/akshatgg/Sessionvault"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+          <span>· Capture sessions. Store them safely. Reuse anywhere.</span>
         </div>
       </footer>
 

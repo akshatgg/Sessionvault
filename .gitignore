@@ -21,3 +21,4 @@ web-ext-artifacts/
 # os / editor cruft
 .DS_Store
 *.log
+.vercel

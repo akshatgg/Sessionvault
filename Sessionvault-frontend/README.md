@@ -25,8 +25,8 @@ npm start
 3. Set **Root Directory** to `Sessionvault-frontend` (since the Next.js app lives in a subfolder).
 4. Framework preset auto-detects **Next.js** — no other config needed. Deploy.
 
-After deploy, copy the production URL (e.g. `https://sessionvault.vercel.app`) and set it as
-`DOCS_URL` in `../extension/popup.js` so the extension's **📖 Docs** button opens it.
+The live docs are at **https://sessionvaults.vercel.app/**. After any redeploy, that URL is
+already wired as `DOCS_URL` in `../extension/popup.js` so the extension's **📖 Docs** button opens it.
 
 ## Structure
 
