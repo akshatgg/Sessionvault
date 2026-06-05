@@ -1,0 +1,49 @@
+name: Publish Firefox add-on
+
+# Runs when you change anything under extension/ on main,
+# or when you trigger it manually from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "extension/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # AMO rejects re-uploading the same version, so we stamp a unique,
+      # always-increasing version: <major>.<minor> from manifest + the run number.
+      # (Applied to the build only — nothing is committed back to the repo.)
+      - name: Compute version
+        run: |
+          BASE=$(jq -r '.version' extension/manifest.json | awk -F. '{print $1"."$2}')
+          VERSION="${BASE}.${{ github.run_number }}"
+          echo "Publishing version $VERSION"
+          tmp=$(mktemp)
+          jq --arg v "$VERSION" '.version = $v' extension/manifest.json > "$tmp"
+          mv "$tmp" extension/manifest.json
+
+      # Signs the add-on AND submits the new version to AMO for the LISTED channel.
+      # The add-on must already exist on AMO (created by your first manual submission).
+      - name: Sign & submit to AMO (listed)
+        run: |
+          npx --yes web-ext@latest sign \
+            --channel listed \
+            --source-dir extension \
+            --ignore-files README.md \
+            --api-key "$AMO_JWT_ISSUER" \
+            --api-secret "$AMO_JWT_SECRET"
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>SessionVault</title>
+</head>
+<body>
+  <header>
+    <div class="head-row">
+      <h1>SessionVault</h1>
+      <button id="btn-docs" class="docs-link" type="button" title="Open documentation">📖 Docs</button>
+    </div>
+    <p id="site" class="muted">Reading current tab…</p>
+  </header>
+
+  <section class="card">
+    <p class="label">What to capture</p>
+    <label class="check"><input type="checkbox" id="want-cookies" checked /> Cookies <span class="muted">(incl. HttpOnly)</span></label>
+    <label class="check"><input type="checkbox" id="want-local" checked /> localStorage</label>
+  </section>
+
+  <section class="actions">
+    <button id="btn-copy">Copy to clipboard</button>
+    <button id="btn-download">Download state.json</button>
+    <button id="btn-send" class="primary">POST to API</button>
+  </section>
+
+  <details id="settings">
+    <summary>API settings</summary>
+    <label class="field">Endpoint URL
+      <input type="url" id="api-url" placeholder="https://your-app.com/sessions" />
+    </label>
+    <label class="field">API key
+      <input type="password" id="api-key" placeholder="sk_…" />
+    </label>
+    <label class="field">Auth header
+      <select id="api-header">
+        <option value="authorization-bearer">Authorization: Bearer &lt;key&gt;</option>
+        <option value="x-api-key">x-api-key: &lt;key&gt;</option>
+      </select>
+    </label>
+    <button id="btn-save-settings" class="ghost">Save settings</button>
+  </details>
+
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

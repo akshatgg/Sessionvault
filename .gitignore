@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# next.js build output
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# env / secrets — never commit these
+.env
+.env.local
+.env*.local
+
+# extension build artifacts
+*.zip
+*.xpi
+web-ext-artifacts/
+
+# os / editor cruft
+.DS_Store
+*.log
