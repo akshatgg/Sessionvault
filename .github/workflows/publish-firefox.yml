@@ -4,7 +4,7 @@ name: Publish Firefox add-on
 # or when you trigger it manually from the Actions tab.
 on:
   push:
-    branches: [main]
+    branches: [main, master]
     paths:
       - "extension/**"
   workflow_dispatch: {}
