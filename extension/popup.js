@@ -3,7 +3,7 @@
 const api = globalThis.browser ?? globalThis.chrome;
 
 // Where the "Docs" button points. Change this to your deployed docs URL.
-const DOCS_URL = "https://sessionvault.vercel.app/";
+const DOCS_URL = "https://sessionvault-frontend.vercel.app/";
 
 const els = {
   site: document.getElementById("site"),
